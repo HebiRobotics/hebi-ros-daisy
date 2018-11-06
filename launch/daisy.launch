@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="hebi-ros-daisy" type="hexapod_control" name="hexapod_control" output="screen" required="true"/>
+</launch>
