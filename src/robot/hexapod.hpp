@@ -1,7 +1,7 @@
 #pragma once
 
-#include "group.hpp"
-#include "group_command.hpp"
+#include "hebi_cpp_api/group.hpp"
+#include "hebi_cpp_api/group_command.hpp"
 
 #include "leg.hpp"
 #include "hexapod_parameters.hpp"

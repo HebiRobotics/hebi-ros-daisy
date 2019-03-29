@@ -18,7 +18,7 @@
 
 #include "robot/hexapod.hpp"
 
-#include "lookup.hpp"
+#include "hebi_cpp_api/lookup.hpp"
 
 
 namespace hebi {

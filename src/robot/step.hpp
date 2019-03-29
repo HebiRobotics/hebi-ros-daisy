@@ -1,6 +1,6 @@
 #pragma once
 
-#include "trajectory.hpp"
+#include "hebi_cpp_api/trajectory.hpp"
 #include <Eigen/Dense>
 
 namespace hebi {
