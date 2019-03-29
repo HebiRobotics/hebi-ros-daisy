@@ -3,7 +3,7 @@
 To install, you will first need to install the dependencies
 
 1. Install ROS (we recommend ROS Melodic on Ubuntu 18.04): see http://wiki.ros.org/melodic/Installation/Ubuntu
-2. Install the `hebi_cpp_api` ROS package:
+1. Install the `hebi_cpp_api` ROS package:
 `$ sudo apt install ros-melodic-hebi-cpp-api`
 
 Now, checkout the code into a new ROS workspace:
@@ -34,21 +34,23 @@ The launch file also runs a "Controller" interface node that begins to search fo
 
 On the controller, you can use the following controls:
 
-B1: toggle stance mode (on) or step mode (off)
-B8: quit
-A1/A2: rotate (pitch forward/back only works in "stance" mode
-A3: move up/down
-A7/A8: shift position in x/y
+* B1: toggle stance mode (on) or step mode (off)
+* B8: quit
+* A1/A2: rotate (pitch forward/back only works in "stance" mode
+* A3: move up/down
+* A7/A8: shift position in x/y
 
 You can also use ROS messages to control the hexapod:
-  
-Channel: `/velocity_command`
-Message: `geometry_msgs::Twist`
-Purpose: linear and angular velocity commands
 
-Channel: `/mode_select`
-Message: `std_msgs::Bool`
-Purpose: "true" to enter stance mode, "false" to enter step mode.
+* Velocity Commands
+  * Channel: `/velocity_command`
+  * Message: `geometry_msgs::Twist`
+  * Purpose: linear and angular velocity commands
+
+* Stance/Step toggle
+  * Channel: `/mode_select`
+  * Message: `std_msgs::Bool`
+  * Purpose: "true" to enter stance mode, "false" to enter step mode.
 
 # Configuring Auto-start
 
