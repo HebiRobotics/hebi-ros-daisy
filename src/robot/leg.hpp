@@ -1,5 +1,5 @@
 #include <memory>
-#include "robot_model.hpp"
+#include "hebi_cpp_api/robot_model.hpp"
 #include "step.hpp"
 #include "hexapod_parameters.hpp"
 

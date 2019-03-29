@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs
   geometry_msgs
+  hebi_cpp_api
 )
 
 ## System dependencies are found with CMake's conventions
@@ -23,6 +24,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 catkin_package(
   CATKIN_DEPENDS roscpp
   CATKIN_DEPENDS message_runtime
+  CATKIN_DEPENDS hebi_cpp_api
 )
 
 ###########
@@ -33,10 +35,6 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
   src
-  hebi-cpp
-  hebi-cpp/src
-  hebi-cpp/hebi/include
-  hebi-cpp/Eigen
   ${catkin_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
 )
@@ -65,21 +63,6 @@ file (COPY ${CMAKE_CURRENT_SOURCE_DIR}/resources/right.hrdf
       DESTINATION ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION})
 
 add_executable(hexapod_control src/hexapod_control.cpp
-  # C API
-  hebi-cpp/src/command.cpp
-  hebi-cpp/src/feedback.cpp
-  hebi-cpp/src/group_command.cpp
-  hebi-cpp/src/group_feedback.cpp
-  hebi-cpp/src/group_info.cpp
-  hebi-cpp/src/group.cpp
-  hebi-cpp/src/info.cpp
-  hebi-cpp/src/robot_model.cpp
-  hebi-cpp/src/log_file.cpp
-  hebi-cpp/src/lookup.cpp
-  hebi-cpp/src/mac_address.cpp
-  hebi-cpp/src/trajectory.cpp
-
-  # Hexapod core code
   ${CMAKE_CURRENT_SOURCE_DIR}/src/robot/leg.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/robot/hexapod.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/robot/step.cpp
@@ -89,4 +72,4 @@ add_executable(hexapod_control src/hexapod_control.cpp
 )
 add_dependencies(hexapod_control ${catkin_EXPORTED_TARGETS})
 
-target_link_libraries(hexapod_control ${catkin_LIBRARIES} ${PROJECT_SOURCE_DIR}/hebi-cpp/hebi/lib/linux_x86_64/libhebi.so)
+target_link_libraries(hexapod_control ${catkin_LIBRARIES})
