@@ -112,17 +112,9 @@ int main(int argc, char** argv) {
   std::unique_ptr<hebi::Hexapod> hexapod = hebi::Hexapod::create(params, hex_errors);
 
   // Try a couple of times... 
-  if (!hexapod) {
+  while (!hexapod) {
     std::cout << "Looking for robot...\n";
     hexapod = hebi::Hexapod::create(params, hex_errors);
-  }
-  if (!hexapod) {
-    std::cout << "Looking for robot...\n";
-    hexapod = hebi::Hexapod::create(params, hex_errors);
-  }
-  if (!hexapod) {
-    std::cout << "Could not find robot!\n";
-    return -1;
   }
   std::cout << "Found robot -- starting control program.\n";
 
