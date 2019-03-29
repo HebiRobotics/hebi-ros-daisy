@@ -30,7 +30,7 @@ To launch the program, run the `daisy.launch` file in the `hebi-ros-daisy` packa
 
 The robot will move into a starting stance position.  If the robot does not move, check that the LEDs are not red on any leg.  This indicates that the leg is outside of a safe starting range, and should be moved back into range before the program continues.
 
-The launch file also runs a "Controller" interface node that begins to search for a [[Mobile IO app][http://docs.hebi.us/tools.html#mobile-io]] on the network, with family "HEBI" and name "Mobile IO".  Once this is found, the Mobile IO interface will be configured for controlling Daisy.  This Mobile IO app should be connected to the robot's wireless network (default PW is `hebi1234`).
+The launch file also runs a "Controller" interface node that begins to search for a Mobile IO app (http://docs.hebi.us/tools.html#mobile-io) on the network, with family "HEBI" and name "Mobile IO".  Once this is found, the Mobile IO interface will be configured for controlling Daisy.  This Mobile IO app should be connected to the robot's wireless network (default PW is `hebi1234`).
 
 On the controller, you can use the following controls:
 
@@ -56,7 +56,9 @@ You can set up the code to run automatically at bootup.  This is done with the `
 
 First, install the `robot_upstart` ROS package:
 
-`$ sudo apt install ros-melodic-robot-upstart`
+```
+$ sudo apt install ros-melodic-robot-upstart
+```
 
 Then set up the script to run the `daisy` launch file at bootup:
 
@@ -91,5 +93,7 @@ $ sudo service hebi-ros-daisy stop
 
 To debug, we found it is best to use `journalctl` (the instructions on the `robot_upstart` documentation are outdated):
 
-`$ sudo journalctl | hebi-ros-daisy`
+```
+$ sudo journalctl | hebi-ros-daisy
+```
 
