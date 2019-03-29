@@ -15,6 +15,7 @@
 
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/JointState.h>
+#include <std_msgs/Bool.h>
 
 #include "robot/hexapod.hpp"
 
@@ -43,6 +44,10 @@ public:
     rotation_velocity_cmd_(0) = std::min(std::max(vel_cmd.angular.x, -max_trans_vel), max_trans_vel);
     rotation_velocity_cmd_(1) = std::min(std::max(vel_cmd.angular.y, -max_trans_vel), max_trans_vel);
     rotation_velocity_cmd_(2) = std::min(std::max(vel_cmd.angular.z, -max_trans_vel), max_trans_vel);
+  }
+
+  void updateMode(std_msgs::Bool stance_mode) {
+    hex_.updateMode(stance_mode.data);
   }
 
   const Eigen::Vector3d& getTranslationVelocityCmd() {
@@ -129,9 +134,11 @@ int main(int argc, char** argv) {
 
   hebi::HexapodROSInterface hex_ros_if(*hexapod, feedback_publisher);
 
-  // Subscribe to velocity command message
+  // Subscribe to velocity command and mode toggle messages
   ros::Subscriber vel_cmd_subscriber =
     node.subscribe<geometry_msgs::Twist>("velocity_command", 50, &hebi::HexapodROSInterface::updateVelocityCommand, &hex_ros_if);
+  ros::Subscriber stance_mode_subscriber =
+    node.subscribe<std_msgs::Bool>("mode_select", 50, &hebi::HexapodROSInterface::updateMode, &hex_ros_if); // True for stance, false for step
 
   // Controls to send to the robot
   Eigen::VectorXd angles(hebi::Leg::getNumJoints());

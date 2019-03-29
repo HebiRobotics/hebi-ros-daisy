@@ -58,8 +58,7 @@ public:
 
   bool setGains();
 
-  // toggle the mode a specified number of times
-  void updateMode(int num_toggles);
+  void updateMode(bool is_stance);
 
   Eigen::Matrix4d getBodyPoseFromFeet();
 

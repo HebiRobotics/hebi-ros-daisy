@@ -32,7 +32,7 @@ std::unique_ptr<Hexapod> Hexapod::createPartial(const HexapodParameters& params,
       names.push_back("elbow" + std::to_string(i + 1));
     }
   }
-  std::vector<std::string> family = { "hexapod" };
+  std::vector<std::string> family = { "Daisy" };
 
   long timeout_ms = 4000; // use a 4 second timeout
   auto group = lookup.getGroupFromNames(family, names, timeout_ms);
@@ -155,17 +155,13 @@ bool Hexapod::setGains()
   return success && group_->sendCommandWithAcknowledgement(gains, 4000);
 }
 
-void Hexapod::updateMode(int num_toggles)
+void Hexapod::updateMode(bool is_stance)
 {
   // This is specialized for two modes:
-  bool toggle = ((num_toggles % 2) == 1);
-  if (toggle)
-  {
-    if (mode_ == Mode::Step)
-      mode_ = Mode::Stance;
-    else if (mode_ == Mode::Stance)
-      mode_ = Mode::Step;
-  }
+  if (is_stance)
+    mode_ = Mode::Stance;
+  else
+    mode_ = Mode::Step;
 }
 
 Eigen::Matrix4d Hexapod::getBodyPoseFromFeet()
