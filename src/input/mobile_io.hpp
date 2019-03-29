@@ -46,6 +46,9 @@ public:
 
   // Input/feedback
   MobileIOState getState();
+  // Input/feedback; the "got_feedback" flag indicates if feedback was received within the timeout
+  // or not.
+  MobileIOState getState(bool& got_feedback);
 
   // Outputs
   // Note: one-indexed to match axes/buttons on the screen

@@ -73,3 +73,10 @@ add_executable(hexapod_control src/hexapod_control.cpp
 add_dependencies(hexapod_control ${catkin_EXPORTED_TARGETS})
 
 target_link_libraries(hexapod_control ${catkin_LIBRARIES})
+
+add_executable(controller src/controller_node.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/input/mobile_io.cpp
+)
+add_dependencies(controller ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(controller ${catkin_LIBRARIES})
