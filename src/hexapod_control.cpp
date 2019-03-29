@@ -38,12 +38,12 @@ public:
     // Limit the actual commanded velocities to reasonable max absolute values:
     constexpr double max_trans_vel = 0.175;
     constexpr double max_rot_vel = 0.4;
-    translation_velocity_cmd_(0) = std::min(std::max(vel_cmd.linear.x, -max_trans_vel), max_trans_vel);
-    translation_velocity_cmd_(1) = std::min(std::max(vel_cmd.linear.y, -max_trans_vel), max_trans_vel);
-    translation_velocity_cmd_(2) = std::min(std::max(vel_cmd.linear.z, -max_trans_vel), max_trans_vel);
-    rotation_velocity_cmd_(0) = std::min(std::max(vel_cmd.angular.x, -max_trans_vel), max_trans_vel);
-    rotation_velocity_cmd_(1) = std::min(std::max(vel_cmd.angular.y, -max_trans_vel), max_trans_vel);
-    rotation_velocity_cmd_(2) = std::min(std::max(vel_cmd.angular.z, -max_trans_vel), max_trans_vel);
+    translation_velocity_cmd_(0) = std::min(std::max(-vel_cmd.linear.x, -max_trans_vel), max_trans_vel);
+    translation_velocity_cmd_(1) = std::min(std::max(-vel_cmd.linear.y, -max_trans_vel), max_trans_vel);
+    translation_velocity_cmd_(2) = std::min(std::max(-vel_cmd.linear.z, -max_trans_vel), max_trans_vel);
+    rotation_velocity_cmd_(0) = std::min(std::max(-vel_cmd.angular.x, -max_trans_vel), max_trans_vel);
+    rotation_velocity_cmd_(1) = std::min(std::max(-vel_cmd.angular.y, -max_trans_vel), max_trans_vel);
+    rotation_velocity_cmd_(2) = std::min(std::max(-vel_cmd.angular.z, -max_trans_vel), max_trans_vel);
   }
 
   void updateMode(std_msgs::Bool stance_mode) {

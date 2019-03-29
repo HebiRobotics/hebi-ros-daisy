@@ -13,8 +13,8 @@ float applyDeadZone(float raw, float dead_zone) {
     return 0;
   // Scale from [dead_zone, 1] to [0, 1] (and same for [-1, -dead_zone]
   if (raw > 0)
-    return -(raw - dead_zone) / (1 - dead_zone);
-  return -(raw + dead_zone) / (1 - dead_zone);
+    return (raw - dead_zone) / (1 - dead_zone);
+  return (raw + dead_zone) / (1 - dead_zone);
 }
 
 int main(int argc, char ** argv) {
@@ -70,12 +70,12 @@ int main(int argc, char ** argv) {
     last_state = state;
 
     // Send messages according to these diffs...
-    velocity_msg.linear.x = -state.getAxis(8) * xyz_scale;
-    velocity_msg.linear.y = state.getAxis(7) * xyz_scale;
+    velocity_msg.linear.x = state.getAxis(8) * xyz_scale;
+    velocity_msg.linear.y = -state.getAxis(7) * xyz_scale;
     velocity_msg.linear.z = applyDeadZone(state.getAxis(3), 0.25) * xyz_scale;
    
-    velocity_msg.angular.y = -rot_scale * state.getAxis(2),
-    velocity_msg.angular.z = rot_scale * state.getAxis(1);
+    velocity_msg.angular.y = rot_scale * state.getAxis(2),
+    velocity_msg.angular.z = -rot_scale * state.getAxis(1);
 
     velocity_pub.publish(velocity_msg);
 
