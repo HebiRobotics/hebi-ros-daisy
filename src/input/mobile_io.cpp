@@ -42,6 +42,7 @@ MobileIOState MobileIO::getState() {
   bool tmp;
   return getState(tmp);
 }
+
 MobileIOState MobileIO::getState(bool& got_feedback) {
   // Update if we get another packet from the Mobile IO device
   // (on "failure to get data", just return last data)
@@ -70,11 +71,13 @@ MobileIOState MobileIO::getState(bool& got_feedback) {
 bool MobileIO::disableSnap(size_t axis_number) {
   return setSnap(axis_number, std::numeric_limits<float>::quiet_NaN());
 }
+
 bool MobileIO::setSnap(size_t axis_number, float snap_to) {
   hebi::GroupCommand cmd(group_->size());
   cmd[0].io().a().setFloat(axis_number, snap_to);
   return group_->sendCommand(cmd);
 }
+
 bool MobileIO::setAxisValue(size_t axis_number, float value) {
   hebi::GroupCommand cmd(group_->size());
   cmd[0].io().f().setFloat(axis_number, value);
@@ -86,6 +89,7 @@ bool MobileIO::setButtonMode(size_t button_number, ButtonMode mode) {
   cmd[0].io().b().setInt(button_number, mode == ButtonMode::Toggle ? 1 : 0);
   return group_->sendCommand(cmd);
 }
+
 bool MobileIO::setButtonOutput(size_t button_number, bool on) {
   hebi::GroupCommand cmd(group_->size());
   cmd[0].io().e().setInt(button_number, on ? 1 : 0);
