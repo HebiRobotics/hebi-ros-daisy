@@ -2,7 +2,7 @@
 
 To install, you will first need to install the dependencies
 
-1. Install ROS (we recommend ROS Melodic on Ubuntu 18.04): see http://wiki.ros.org/melodic/Installation/Ubuntu
+1. [Install ROS](http://wiki.ros.org/melodic/Installation/Ubuntu) (we recommend ROS Melodic on Ubuntu 18.04)
 1. Install the `hebi_cpp_api` ROS package:
 `$ sudo apt install ros-melodic-hebi-cpp-api`
 
@@ -30,7 +30,7 @@ To launch the program, run the `daisy.launch` file in the `hebi-ros-daisy` packa
 
 The robot will move into a starting stance position.  If the robot does not move, check that the LEDs are not red on any leg.  This indicates that the leg is outside of a safe starting range, and should be moved back into range before the program continues.
 
-The launch file also runs a "Controller" interface node that begins to search for a Mobile IO app (http://docs.hebi.us/tools.html#mobile-io) on the network, with family "HEBI" and name "Mobile IO".  Once this is found, the Mobile IO interface will be configured for controlling Daisy.  This Mobile IO app should be connected to the robot's wireless network (default PW is `hebi1234`).
+The launch file also runs a "Controller" interface node that begins to search for a [Mobile IO app](http://docs.hebi.us/tools.html#mobile-io) on the network, with family "HEBI" and name "Mobile IO".  Once this is found, the Mobile IO interface will be configured for controlling Daisy.  This Mobile IO app should be connected to the robot's wireless network (default PW is `hebi1234`).
 
 On the controller, you can use the following controls:
 
@@ -39,6 +39,8 @@ On the controller, you can use the following controls:
 * A1/A2: rotate (pitch forward/back only works in "stance" mode
 * A3: move up/down
 * A7/A8: shift position in x/y
+
+![Controller Image](controller.png)
 
 You can also use ROS messages to control the hexapod:
 
@@ -54,7 +56,7 @@ You can also use ROS messages to control the hexapod:
 
 # Configuring Auto-start
 
-You can set up the code to run automatically at bootup.  This is done with the `robot_upstart` ROS package (see http://docs.ros.org/melodic/api/robot_upstart/html).
+You can set up the code to run automatically at bootup.  This is done with the [`robot_upstart` ROS package](http://docs.ros.org/melodic/api/robot_upstart/html).
 
 First, install the `robot_upstart` ROS package:
 
@@ -70,8 +72,8 @@ $ source devel/setup.sh
 $ rosrun robot_upstart install hebi-ros-daisy/launch/daisy.launch
 ```
 
-We have found that for this to work on bootup on ROS Melodic on Ubuntu 18.04, you will need to apply the patch from
-https://github.com/clearpathrobotics/robot_upstart/issues/71
+We have found that for this to work on bootup on ROS Melodic on Ubuntu 18.04, you will need to apply [this patch](
+https://github.com/clearpathrobotics/robot_upstart/issues/71 )
 
 In particular, open `/lib/systemd/system/hebi-ros-daisy.service` (you will need root access), and add the following lines to the first section:
 ```
