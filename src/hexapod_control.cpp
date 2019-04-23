@@ -162,7 +162,7 @@ int main(int argc, char** argv) {
     // TODO: handle "startup" phase here...
     
     // Optionally slowly ramp up commands over the first few seconds
-    double ramp_up_scale = std::min(1.0, (elapsed - startup_seconds) / 2.0);
+    double ramp_up_scale = std::min(1.0, elapsed / startup_seconds);
 
     // Actually control the hexapod:
     hexapod->updateStance(
