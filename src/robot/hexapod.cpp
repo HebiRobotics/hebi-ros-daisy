@@ -27,9 +27,9 @@ std::unique_ptr<Hexapod> Hexapod::createPartial(const HexapodParameters& params,
   {
     if (real_legs.count(i) > 0)
     {
-      names.push_back("base" + std::to_string(i + 1));
-      names.push_back("shoulder" + std::to_string(i + 1));
-      names.push_back("elbow" + std::to_string(i + 1));
+      names.push_back("L" + std::to_string(i + 1) + "_J1_Base" );
+      names.push_back("L" + std::to_string(i + 1) + "_J2_Shoulder" );
+      names.push_back("L" + std::to_string(i + 1) + "_J3_Elbow" );
     }
   }
   std::vector<std::string> family = { "Daisy" };
