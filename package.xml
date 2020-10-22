@@ -2,7 +2,7 @@
 <package format="2">
   <name>hebi-ros-daisy</name>
   <version>0.0.2</version>
-  <description>A package for running the HEBI Hexapod (Daisy) as a ROS node.</description>
+  <description>A package for running the HEBI R-series Hexapod (Lily) as a ROS node.</description>
 
   <maintainer email="matt@hebirobotics.com">Matthew Tesch</maintainer>
   <license>MIT</license>

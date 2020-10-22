@@ -1,5 +1,5 @@
 /**
- * Control a HEBI Hexapod (Daisy) from ROS
+ * Control a HEBI Hexapod (Lily) from ROS
  *
  * HEBI Robotics
  * September 2018
