@@ -60,11 +60,11 @@ public:
 
   void updateMode(bool is_stance);
 
-  Eigen::Matrix4d getBodyPoseFromFeet();
+  Eigen::Matrix4d getBodyPoseFromFeet() const;
 
-  bool needToStep();
+  bool needToStep() const;
 
-  bool isStepping();
+  bool isStepping() const;
 
   void startStep(double t);
 
@@ -78,7 +78,7 @@ public:
 
   Eigen::VectorXd getLegFeedback(int leg_index);
 
-  void computeFootForces(double t, Eigen::MatrixXd& foot_forces);
+  void computeFootForces(double t, Eigen::MatrixXd& foot_forces) const;
 
   std::chrono::time_point<std::chrono::steady_clock> getLastFeedbackTime();
 
@@ -118,9 +118,9 @@ private:
   const int num_angles_ = num_legs_ * Leg::getNumJoints();
 
   // TODO: abstract into "step" class? At least parameter data structure?
-  // TODO: LOAD FROM XML!
   HexapodParameters params_;
-  static constexpr float weight_ = 9.8f * 21.0f; // mass = 21 kg
+  // weight_ represents sum of body and leg weights
+  float weight_; // in Newtons or mass (kg) * gravity (9.8 m/s^2)
 
   Eigen::Vector3d vel_xyz_;
 

@@ -30,7 +30,7 @@ To launch the program, run the `daisy.launch` file in the `hebi-ros-daisy` packa
 
 The robot will move into a starting stance position.  If one or more of the robot's legs do not move, check that the LEDs are not blinking yellow on any leg; this indicates that the leg is outside of a safe starting range, and should be moved back into range before continuing (e.g., by pulling up Scope and querying the current position).
 
-The launch file also runs a "Controller" interface node that begins to search for a [Mobile IO app](http://docs.hebi.us/tools.html#mobile-io) on the network, with family "HEBI" and name "Mobile IO".  Once this is found, the Mobile IO interface will be configured for controlling Daisy.  This Mobile IO app should be connected to the robot's wireless network (default PW is `hebi1234`).
+The launch file also runs a "Controller" interface node that begins to search for a [Mobile IO app](http://docs.hebi.us/tools.html#mobile-io) on the network, with family "Daisy" and name "mobileIO".  Once this is found, the Mobile IO interface will be configured for controlling Daisy.  This Mobile IO app should be connected to the robot's wireless network (default PW is `hebi1234`).
 
 On the controller, you can use the following controls:
 
